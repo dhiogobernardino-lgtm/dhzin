@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+    font-family:Arial,sans-serif;
+}
+
+/* Tela de senha */
+#login{
+    position:fixed;
+    inset:0;
+    background:#000;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+#login h2{
+    margin-bottom:20px;
+}
+
+#senha{
+    padding:12px;
+    font-size:18px;
+    text-align:center;
+    border:none;
+    border-radius:8px;
+    outline:none;
+}
+
+button{
+    margin-top:15px;
+    padding:10px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+#erro{
+    color:#ff4d4d;
+    margin-top:15px;
+}
+
+/* Animação */
+#animacao{
+    display:none;
+}
+
+.container{
+    text-align:center;
+    animation:ciclo 8s infinite;
+}
+
+h1{
+    color:#fff;
+    font-size:2em;
+    margin-bottom:20px;
+}
+
+.heart{
+    font-size:50px;
+    color:#fff;
+}
+
+@keyframes ciclo{
+    0%{
+        opacity:0;
+        transform:scale(.9);
+        filter:blur(8px);
+    }
+    20%{
+        opacity:1;
+        transform:scale(1);
+        filter:blur(0);
+    }
+    60%{
+        opacity:1;
+        transform:scale(1);
+        filter:blur(0);
+    }
+    100%{
+        opacity:0;
+        transform:scale(.7);
+        filter:blur(10px);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Tela de senha -->
+<div id="login">
+    <h2>Digite a senha</h2>
+    <input type="password" id="senha" placeholder="Senha">
+    <button onclick="entrar()">Entrar</button>
+    <p id="erro"></p>
+</div>
+
+<!-- Animação -->
+<div id="animacao">
+    <div class="container">
+        <h1>Você é importante pra mim!</h1>
+        <div class="heart">🤍</div>
+    </div>
+</div>
+
+<script>
+function entrar(){
+    const senha = document.getElementById("senha").value;
+
+    if(senha === "2409"){
+        document.getElementById("login").style.display = "none";
+        document.getElementById("animacao").style.display = "block";
+        document.body.style.display = "flex";
+    }else{
+        document.getElementById("erro").innerText = "Senha incorreta!";
+    }
+}
+
+document.getElementById("senha").addEventListener("keypress", function(e){
+    if(e.key === "Enter"){
+        entrar();
+    }
+});
+</script>
+
+</body>
+</html>
